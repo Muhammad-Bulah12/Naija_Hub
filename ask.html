@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask Your Teacher | Naija Students Learning Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    .ask-shell {
+      display: grid;
+      gap: 1.2rem;
+    }
+    .ask-hero {
+      padding: 1.6rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #ffffff 0%, #eef7ff 45%, #effaf4 100%);
+      border: 1px solid #d7e4f1;
+      box-shadow: 0 16px 34px rgba(16, 42, 67, 0.08);
+    }
+    .ask-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1.2rem;
+      align-items: start;
+    }
+    .tip-stack {
+      display: grid;
+      gap: 0.9rem;
+    }
+    .tip-card {
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid #d7e4f1;
+      box-shadow: 0 10px 24px rgba(16, 42, 67, 0.06);
+    }
+    .tip-card strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-family: "Sora", "Trebuchet MS", sans-serif;
+    }
+    .tip-card span {
+      color: #486581;
+      font-size: 0.92rem;
+    }
+    @media (max-width: 860px) {
+      .ask-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Logo" class="brand-logo">
+        <span>Naija Students Learning Hub</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="login.php">Teacher Portal</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container narrow">
+      <div class="ask-shell">
+      <div class="ask-hero">
+        <p class="eyebrow">AI Teacher Assistant</p>
+        <h1 style="margin:0 0 0.8rem;">Ask Your Teacher</h1>
+        <p style="margin:0;color:#486581;">Type a simple question and get a clear explanation. Use the Hausa button when a student needs a translated explanation.</p>
+      </div>
+
+      <div class="ask-layout">
+        <section class="card assistant-card">
+          <label class="field-label" for="studentQuestion">Your question</label>
+          <input id="studentQuestion" class="text-input" type="text" placeholder="Example: What is noun?">
+          <div class="quick-topics">
+            <button class="chip ask-chip" type="button" data-topic="noun">Noun</button>
+            <button class="chip ask-chip" type="button" data-topic="verb">Verb</button>
+            <button class="chip ask-chip" type="button" data-topic="population">Population</button>
+            <button class="chip ask-chip" type="button" data-topic="environment">Environment</button>
+            <button class="chip ask-chip" type="button" data-topic="social problem">Social Problem</button>
+          </div>
+          <div class="button-row">
+            <button id="askButton" class="btn btn-primary" type="button">Ask</button>
+            <button id="explainHausaButton" class="btn btn-outline" type="button">Explain in Hausa</button>
+          </div>
+          <div id="assistantResponse" class="response-box">
+            Ask about noun, verb, population, environment, or social problem.
+          </div>
+        </section>
+
+        <aside class="tip-stack">
+          <article class="tip-card">
+            <strong>Best Results</strong>
+            <span>Ask short questions like “What is a noun?” or “Explain population in Hausa.”</span>
+          </article>
+          <article class="tip-card">
+            <strong>Student Friendly</strong>
+            <span>Use this page to support revision, homework, and simple classroom practice.</span>
+          </article>
+        </aside>
+      </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a class="brand" href="index.html" style="margin-bottom:1.5rem; color:var(--text);">
+            <img src="assets/logo.png" alt="Logo" class="brand-logo">
+            <span>Learning Hub</span>
+          </a>
+          <p>Supporting teachers and students with accessible lessons, quizzes, and guided learning tools in Nigeria.</p>
+          <div class="footer-social">
+            <a href="#" class="social-box"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-instagram-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-x-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-linkedin-logo"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <nav class="footer-nav">
+            <a href="subjects.html">Browse Subjects</a>
+            <a href="ask.html">Ask Your Teacher</a>
+            <a href="login.php">Teacher Portal</a>
+            <a href="index.html">Home Page</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Educational Links</h4>
+          <nav class="footer-nav">
+            <a href="https://education.gov.ng/" target="_blank">Federal Ministry of Education</a>
+            <a href="https://ubec.gov.ng/" target="_blank">UBEC</a>
+            <a href="https://nerdc.gov.ng/" target="_blank">NERDC</a>
+            <a href="https://www.unicef.org/nigeria/education" target="_blank">UNICEF Nigeria</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Contact & Support</h4>
+          <p>Helping learners across underserved communities in Yobe State and Nigeria.</p>
+          <p style="margin-top:1rem;"><strong>Email:</strong> info@naijahub.local</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Naija Students Learning Hub. All rights reserved.</p>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="#" style="color:var(--muted);">Privacy Policy</a>
+          <a href="#" style="color:var(--muted);">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

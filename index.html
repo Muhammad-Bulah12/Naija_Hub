@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naija Students Learning Hub – AI Learning Companion</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    /* ── Hero with background image ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('assets/hero-kids.jpg') center / cover no-repeat;
+      z-index: 0;
+      filter: brightness(0.38) saturate(1.1);
+    }
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+    .hero .eyebrow { color: #f5c860; }
+    .hero h1      { color: #fff; }
+    .hero .lead    { color: #dde8f5; }
+    .hero .badge   {
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.35);
+      color: #fff;
+    }
+    /* ── Subject card images ── */
+    .subject-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    /* ── Stat strip ── */
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      margin: 2rem 0 0;
+    }
+    .stat-item {
+      text-align: center;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px;
+      padding: 0.9rem 1.5rem;
+      color: #fff;
+      min-width: 130px;
+    }
+    .stat-item strong { display: block; font-size: 1.6rem; font-family: 'Sora', sans-serif; }
+    .stat-item span   { font-size: 0.82rem; color: #c8ddf2; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Logo" class="brand-logo">
+        <span>Naija Students Learning Hub</span>
+      </a>
+      <nav class="main-nav">
+        <a href="subjects.html">Subjects</a>
+        <a href="ask.html">Ask Your Teacher</a>
+        <a href="login.php">Teacher Portal</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ══════════ HERO ══════════ -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-grid" style="padding: 4.5rem 0;">
+        <div>
+          <p class="eyebrow">AI Learning Companion</p>
+          <h1>Naija Students Learning Hub – Learn Anywhere, Anytime</h1>
+          <p class="lead">
+            A mobile-friendly learning platform built for students in underserved communities,
+            with simple lessons, bilingual support, quizzes, and an AI-style teacher assistant.
+          </p>
+          <div class="hero-badges">
+            <span class="badge">Low Data Friendly</span>
+            <span class="badge">English + Hausa</span>
+            <span class="badge">Works on Mobile</span>
+          </div>
+          <div class="button-row">
+            <a class="btn btn-primary"   href="subjects.html">Start Learning</a>
+            <a class="btn btn-secondary" href="quiz/english-quiz.html">Take a Quiz</a>
+            <a class="btn btn-outline"   href="ask.html" style="color:#102a43;border-color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.92);">Ask Your Teacher</a>
+          </div>
+          <!-- Quick stats -->
+          <div class="stat-strip">
+            <div class="stat-item"><strong>JSS + SS</strong><span>All levels covered</span></div>
+            <div class="stat-item"><strong>2 Lang</strong><span>English &amp; Hausa</span></div>
+            <div class="stat-item"><strong>24 +</strong><span>Subjects available</span></div>
+          </div>
+        </div>
+        <div class="hero-card card" style="z-index:1;">
+          <h2>Built for low internet and underserved communities</h2>
+          <ul class="feature-list">
+            <li>Lightweight pages with no heavy dependencies</li>
+            <li>Simple English with Hausa translation support</li>
+            <li>Useful for students learning from home or crowded classes</li>
+            <li>Designed to work well on mobile phones</li>
+            <li>Teachers can upload lessons &amp; quizzes per class level</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ CHALLENGE ══════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">The Challenge</p>
+          <h2>Why this matters in Yobe State</h2>
+        </div>
+        <div class="cards-grid two-up">
+          <article class="card">
+            <h3>🏫 Interrupted schooling</h3>
+            <p>
+              Insecurity and displacement can stop students from attending school regularly.
+              Many learners need a safe way to continue studying from any location.
+            </p>
+          </article>
+          <article class="card">
+            <h3>👩‍🏫 Too few teachers</h3>
+            <p>
+              One teacher may handle 100 to 200 students. This makes it hard for each learner
+              to ask questions and get enough attention in class.
+            </p>
+          </article>
+          <article class="card">
+            <h3>🗣️ Language gap</h3>
+            <p>
+              Some students understand Hausa better than English. Lessons with translation can
+              improve understanding and confidence.
+            </p>
+          </article>
+          <article class="card">
+            <h3>📶 Limited internet and materials</h3>
+            <p>
+              Students often have low data access and few textbooks. This platform uses small,
+              fast pages and essential content only.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ SUBJECTS PREVIEW ══════════ -->
+    <section class="section section-accent">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Subjects</p>
+          <h2>Choose what to study today</h2>
+        </div>
+        <div class="cards-grid two-up">
+          <article class="card subject-card">
+            <img src="assets/english-card.jpg" alt="English Studies" class="subject-img">
+            <h3>English Studies</h3>
+            <p>Grammar, comprehension, and writing topics — explained in simple English with Hausa support.</p>
+            <a class="btn btn-outline" href="subjects.html">Open English Lessons</a>
+          </article>
+          <article class="card subject-card">
+            <img src="assets/social-card.jpg" alt="Social Studies" class="subject-img">
+            <h3>Social Studies</h3>
+            <p>Community, society, population, and environment topics made easy with bilingual explanations.</p>
+            <a class="btn btn-outline" href="subjects.html">Open Social Studies</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ IMPACT ══════════ -->
+    <section class="section">
+      <div class="container narrow">
+        <div class="section-heading">
+          <p class="eyebrow">Impact</p>
+          <h2>Real support for learning continuity</h2>
+        </div>
+        <p class="impact-text">
+          This platform helps students continue learning even in areas affected by insecurity and
+          lack of teachers. It also supports students who understand Hausa better by providing
+          bilingual learning and AI-assisted explanations.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════ STUDENT DASHBOARD ══════════ -->
+    <section class="section section-accent">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Student Dashboard</p>
+          <h2>Start with the task you need right now</h2>
+        </div>
+        <div class="cards-grid three-up">
+          <article class="card">
+            <h3>📚 Read a lesson</h3>
+            <p>Open a short bilingual lesson and study at your own pace.</p>
+            <a class="btn btn-outline" href="subjects.html">Open Subjects</a>
+          </article>
+          <article class="card">
+            <h3>✍️ Practice a quiz</h3>
+            <p>Test yourself quickly and get your score immediately.</p>
+            <a class="btn btn-outline" href="quiz/social-quiz.html">Start Practice</a>
+          </article>
+          <article class="card">
+            <h3>🤔 Ask for help</h3>
+            <p>Use the AI teacher assistant when a topic is confusing.</p>
+            <a class="btn btn-outline" href="ask.html">Ask a Question</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ HOW IT WORKS ══════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">How It Works</p>
+          <h2>Simple tools for daily learning</h2>
+        </div>
+        <div class="cards-grid three-up">
+          <article class="card">
+            <h3>1. Learn lessons</h3>
+            <p>Students read short, clear lessons in English and switch to Hausa when needed.</p>
+          </article>
+          <article class="card">
+            <h3>2. Practice with quizzes</h3>
+            <p>Quick multiple-choice tests help learners check understanding instantly.</p>
+          </article>
+          <article class="card">
+            <h3>3. Ask the AI teacher</h3>
+            <p>A simple assistant gives fast, student-friendly explanations for common topics.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ PLATFORM READINESS ══════════ -->
+    <section class="section section-accent">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Platform Readiness</p>
+          <h2>Built to grow with schools and communities</h2>
+        </div>
+        <div class="cards-grid two-up">
+          <article class="card">
+            <h3>📖 More subjects</h3>
+            <p>JSS and SS subjects so more learners can use one platform.</p>
+          </article>
+          <article class="card">
+            <h3>📴 Offline learning mode</h3>
+            <p>Support downloaded lessons and quizzes for areas with poor connectivity.</p>
+          </article>
+          <article class="card">
+            <h3>👩‍💻 Teacher content system</h3>
+            <p>Teachers upload and manage lessons for different schools and class levels.</p>
+          </article>
+          <article class="card">
+            <h3>📱 Mobile app version</h3>
+            <p>Expand into a dedicated app for broader community access.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ WHY IT WORKS ══════════ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Competition Strength</p>
+          <h2>Why this is a real solution</h2>
+        </div>
+        <div class="cards-grid three-up">
+          <article class="card">
+            <h3>✅ Relevant</h3>
+            <p>It directly responds to insecurity, overcrowded classrooms, and poor access to learning materials.</p>
+          </article>
+          <article class="card">
+            <h3>⚡ Practical</h3>
+            <p>Students can learn, revise, and ask questions without needing heavy internet or expensive devices.</p>
+          </article>
+          <article class="card">
+            <h3>🔧 Extendable</h3>
+            <p>Teachers can add content over time, making the platform useful beyond a one-time demo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a class="brand" href="index.html" style="margin-bottom:1.5rem; color:var(--text);">
+            <img src="assets/logo.png" alt="Logo" class="brand-logo">
+            <span>Learning Hub</span>
+          </a>
+          <p>Supporting teachers and students with accessible lessons, quizzes, and guided learning tools in Nigeria.</p>
+          <div class="footer-social">
+            <a href="#" class="social-box"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-instagram-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-x-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-linkedin-logo"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <nav class="footer-nav">
+            <a href="subjects.html">Browse Subjects</a>
+            <a href="ask.html">Ask Your Teacher</a>
+            <a href="login.php">Teacher Portal</a>
+            <a href="index.html">Home Page</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Educational Links</h4>
+          <nav class="footer-nav">
+            <a href="https://education.gov.ng/" target="_blank">Federal Ministry of Education</a>
+            <a href="https://ubec.gov.ng/" target="_blank">UBEC</a>
+            <a href="https://nerdc.gov.ng/" target="_blank">NERDC</a>
+            <a href="https://www.unicef.org/nigeria/education" target="_blank">UNICEF Nigeria</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Contact & Support</h4>
+          <p>Helping learners across underserved communities in Yobe State and Nigeria.</p>
+          <p style="margin-top:1rem;"><strong>Email:</strong> info@naijahub.local</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Naija Students Learning Hub. All rights reserved.</p>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="#" style="color:var(--muted);">Privacy Policy</a>
+          <a href="#" style="color:var(--muted);">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
