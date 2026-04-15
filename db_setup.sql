@@ -9,26 +9,14 @@ CREATE DATABASE IF NOT EXISTS naija_hub
 
 USE naija_hub;
 
--- Schools
-CREATE TABLE IF NOT EXISTS schools (
-  id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  school_name VARCHAR(180) NOT NULL,
-  school_code VARCHAR(20)  NOT NULL UNIQUE,
-  location    VARCHAR(180) DEFAULT '',
-  created_at  DATETIME DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
-
 -- Teachers / Admins
 CREATE TABLE IF NOT EXISTS teachers (
   id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  school_id   INT UNSIGNED DEFAULT NULL,
   full_name   VARCHAR(120) NOT NULL DEFAULT '',
   username    VARCHAR(60)  NOT NULL UNIQUE,
   email       VARCHAR(190) NOT NULL UNIQUE,
   password    VARCHAR(255) NOT NULL,   -- bcrypt hash
-  assigned_class VARCHAR(20) DEFAULT NULL, -- e.g. JSS 1 Monitor
-  created_at  DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (school_id) REFERENCES schools(id) ON DELETE SET NULL
+  created_at  DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
 -- Default admin — password: 123456789 (bcrypt hash)
@@ -77,45 +65,12 @@ CREATE TABLE IF NOT EXISTS quizzes (
   FOREIGN KEY (teacher_id) REFERENCES teachers(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- Students
-CREATE TABLE IF NOT EXISTS students (
-  id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  school_id   INT UNSIGNED NOT NULL,
-  full_name   VARCHAR(120) NOT NULL DEFAULT '',
-  username    VARCHAR(60)  NOT NULL UNIQUE,
-  email       VARCHAR(190) NOT NULL UNIQUE,
-  password    VARCHAR(255) NOT NULL,
-  class_level VARCHAR(20)  NOT NULL, -- e.g. JSS 1
-  created_at  DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (school_id) REFERENCES schools(id) ON DELETE CASCADE
-) ENGINE=InnoDB;
-
--- Quiz Results
-CREATE TABLE IF NOT EXISTS quiz_results (
-  id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  student_id  INT UNSIGNED NOT NULL,
-  subject     VARCHAR(80)  NOT NULL,
-  level       VARCHAR(20)  NOT NULL,
-  score       INT UNSIGNED NOT NULL,
-  total       INT UNSIGNED NOT NULL,
-  created_at  DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
-) ENGINE=InnoDB;
-
 -- If your tables already exist, add the new duplicate-protection columns/indexes manually:
--- ALTER TABLE teachers ADD COLUMN school_id INT UNSIGNED DEFAULT NULL AFTER id;
--- ALTER TABLE teachers ADD COLUMN assigned_class VARCHAR(20) DEFAULT NULL AFTER password;
--- ALTER TABLE teachers ADD FOREIGN KEY (school_id) REFERENCES schools(id) ON DELETE SET NULL;
--- CREATE TABLE IF NOT EXISTS schools ... (see above)
--- CREATE TABLE IF NOT EXISTS students ... (see above)
--- DEFAULT DATA FOR TESTING
--- ============================================================
-
--- Default School: Abdullahi Bin Masud
-INSERT IGNORE INTO schools (id, school_name, school_code, location)
-VALUES (1, 'Abdullahi Bin Masud', 'ABM2026', 'Yobe, Nigeria');
-
--- Default Student
--- Username: student1, Password: 123456789 (bcrypt hash)
-INSERT IGNORE INTO students (id, school_id, full_name, username, email, password, class_level)
-VALUES (1, 1, 'Sample Student', 'student1', 'student@naijahub.local', '$2y$10$p0qS9QS71s39oIZ8Iizkn.tXJohFRehkwi4VwEH7D4E2i5aTy71L6', 'JSS 1');
+-- ALTER TABLE lessons ADD COLUMN title_normalized VARCHAR(180) NOT NULL AFTER title;
+-- ALTER TABLE lessons ADD COLUMN lesson_signature CHAR(64) NOT NULL AFTER content_ha;
+-- ALTER TABLE lessons ADD UNIQUE KEY uq_lessons_signature (lesson_signature);
+-- ALTER TABLE lessons ADD UNIQUE KEY uq_lessons_title (level, subject, title_normalized);
+-- ALTER TABLE quizzes ADD COLUMN question_normalized VARCHAR(500) NOT NULL AFTER question_en;
+-- ALTER TABLE quizzes ADD COLUMN quiz_signature CHAR(64) NOT NULL AFTER correct_idx;
+-- ALTER TABLE quizzes ADD UNIQUE KEY uq_quizzes_signature (quiz_signature);
+-- ALTER TABLE quizzes ADD UNIQUE KEY uq_quizzes_question (level, subject, question_normalized);

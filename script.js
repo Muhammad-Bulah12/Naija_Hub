@@ -717,7 +717,7 @@ async function initSubjectQuizPage() {
     render();
   });
 
-  submit.addEventListener("click", async () => {
+  submit.addEventListener("click", () => {
     let score = 0;
     selected.forEach((quiz, index) => {
       const selectedOption = form.querySelector(`input[name="subjectQuizQ${index}"]:checked`);
@@ -725,30 +725,9 @@ async function initSubjectQuizPage() {
         score += 1;
       }
     });
-
     result.textContent = language === "ha"
       ? `Ka samu ${score} cikin ${selected.length}.`
       : `You scored ${score} out of ${selected.length}.`;
-
-    // Try to save to backend
-    try {
-      const res = await fetch("api/results.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          subject: subjectParam,
-          level: levelParam,
-          score: score,
-          total: selected.length
-        })
-      });
-      const data = await res.json();
-      if (data.ok) {
-        result.textContent += (language === "ha" ? " An ajiye sakamako." : " Result saved.");
-      }
-    } catch (e) {
-      console.warn("Could not save result to database.");
-    }
   });
 
   render();

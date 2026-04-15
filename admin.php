@@ -14,7 +14,6 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
   <title>Teacher Admin Panel | Naija Students Learning Hub</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     /* ── Admin-specific enhancements ── */
     .dashboard-shell {
@@ -223,17 +222,6 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
         grid-template-columns: 1fr;
       }
     }
-    /* ── Progress Dashboard ── */
-    .progress-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-top: 1rem; }
-    @media (max-width: 900px) { .progress-grid { grid-template-columns: 1fr; } }
-    .progress-stat-card {
-      background: #1a6b3a; color: white; padding: 1.5rem; border-radius: 20px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; box-shadow: 0 10px 20px rgba(26, 107, 58, 0.2);
-    }
-    .progress-stat-card h3 { font-size: 2.2rem; margin: 0; color: #f8d36f; }
-    .progress-stat-card p { margin: 0.5rem 0 0; font-size: 0.9rem; opacity: 0.9; font-weight: 600; }
-    .chart-container { background: white; padding: 1.5rem; border-radius: 24px; border: 1px solid #eef2f6; }
   </style>
 </head>
 <body>
@@ -246,7 +234,8 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
       <nav class="main-nav">
         <a href="index.html">Home</a>
         <a href="subjects.html">Subjects</a>
-        <a href="logout.php" style="color:#c0392b; font-weight:700;">Logout</a>
+        <a href="ask.html">Ask Your Teacher</a>
+        <a href="admin.php">Teacher Portal</a>
         <a href="logout.php">Logout</a>
       </nav>
     </div>
@@ -286,7 +275,6 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
         <button class="admin-tab active" data-target="panel-lesson">📚 Upload Lesson</button>
         <button class="admin-tab"        data-target="panel-quiz">❓ Upload Quiz</button>
         <button class="admin-tab"        data-target="panel-saved">📋 Saved Content</button>
-        <button class="admin-tab"        data-target="panel-progress">📊 Student Progress</button>
       </div>
 
       <!-- ══════════════════ LESSON PANEL ══════════════════ -->
@@ -517,44 +505,6 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
         </div>
       </div><!-- /panel-saved -->
 
-      <!-- ══════════════════ STUDENT PROGRESS PANEL ══════════════════ -->
-      <div class="admin-panel card" id="panel-progress">
-        <div class="panel-header">
-          <div>
-            <span class="panel-kicker">Live Analytics</span>
-            <h2>Student Progress — Every Learner Visible</h2>
-            <p style="margin:0;color:#555;">Teachers see how each student is performing — in real time.</p>
-          </div>
-        </div>
-
-        <div class="progress-grid">
-          <div class="chart-container">
-            <canvas id="studentBarChart"></canvas>
-          </div>
-          <div style="display:grid; gap:1rem;">
-            <div class="progress-stat-card">
-              <h3 id="avgScoreStat">0%</h3>
-              <p>Avg Quiz Score This Week</p>
-            </div>
-            <div class="progress-stat-card">
-              <h3 id="subjectCountStat">0</h3>
-              <p>Subjects Available to Track</p>
-            </div>
-            <div class="progress-stat-card">
-              <h3 id="visibilityStat">100%</h3>
-              <p>Visibility — Every Student</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="content-section" style="margin-top:1.5rem;">
-          <h3 style="margin-bottom:1rem;">Teachers can identify struggling students early and provide targeted support.</h3>
-          <div id="resultsTableContainer" class="saved-card-grid">
-            <!-- Detailed results will load here -->
-          </div>
-        </div>
-      </div><!-- /panel-progress -->
-
       </div>
     </div><!-- /container -->
   </main>
@@ -621,8 +571,6 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
       panel.classList.add("active");
       // Load DB content when switching to Saved Content
       if (btn.dataset.target === "panel-saved") loadAllFromDB();
-      // Load progress data when switching to Progress tab
-      if (btn.dataset.target === "panel-progress") loadProgressData();
     });
   });
 
@@ -1020,106 +968,7 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
     msg.textContent = `Saved ${successCount}/${payloads.length}. Failed ${failCount}. ${failNotes.slice(0, 2).join(" ")}`;
     msg.className = "status-text error";
     loadQuizzesFromDB();
-    }, { capture: true });
-
-    let progressChart = null;
-    async function loadProgressData() {
-      const table = document.getElementById("resultsTableContainer");
-      if (!table) return;
-      table.innerHTML = "<p>Loading progress data...</p>";
-
-      try {
-        const res = await fetch("api/results.php");
-        const data = await res.json();
-        if (!data.ok || !data.results || data.results.length === 0) {
-          table.innerHTML = "<p>No progress data found for your assigned class.</p>";
-          return;
-        }
-
-        const results = data.results;
-        table.innerHTML = "";
-
-        // KPI Calculations
-        let totalScores = 0;
-        let totalMax = 0;
-        const subjects = new Set();
-        const studentMap = {}; // name -> avg score aggregate
-
-        results.forEach(r => {
-          totalScores += Number(r.score);
-          totalMax += Number(r.total);
-          subjects.add(r.subject);
-          
-          if (!studentMap[r.full_name]) {
-            studentMap[r.full_name] = { sum: 0, count: 0 };
-          }
-          studentMap[r.full_name].sum += (Number(r.score) / Number(r.total)) * 100;
-          studentMap[r.full_name].count += 1;
-
-          const card = document.createElement("article");
-          card.className = "card";
-          card.style.padding = "1rem";
-          card.innerHTML = `
-            <h4 style="margin:0">${r.full_name}</h4>
-            <p style="font-size:0.8rem; color:#666; margin:0.3rem 0;">${r.subject} • ${r.created_at}</p>
-            <strong style="color:var(--accent); display:block; margin-top:0.4rem;">Score: ${r.score} / ${r.total}</strong>
-          `;
-          table.appendChild(card);
-        });
-
-        const avgScorePercent = totalMax > 0 ? Math.round((totalScores / totalMax) * 100) : 0;
-        document.getElementById("avgScoreStat").textContent = avgScorePercent + "%";
-        document.getElementById("subjectCountStat").textContent = subjects.size;
-
-        // Chart.js implementation
-        const labels = Object.keys(studentMap);
-        const scores = labels.map(l => Math.round(studentMap[l].sum / studentMap[l].count));
-
-        const ctx = document.getElementById('studentBarChart').getContext('2d');
-        if (progressChart) progressChart.destroy();
-        
-        progressChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: labels,
-            datasets: [{
-              label: 'Avg Performance (%)',
-              data: scores,
-              backgroundColor: '#1a6b3a',
-              borderRadius: 8,
-              barThickness: 30
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              y: { 
-                beginAtZero: true, 
-                max: 100,
-                grid: { color: '#f0f0f0' },
-                ticks: { font: { family: 'Sora' } }
-              },
-              x: {
-                grid: { display: false },
-                ticks: { font: { family: 'Sora', size: 11 } }
-              }
-            },
-            plugins: {
-              legend: { display: false },
-              tooltip: {
-                backgroundColor: '#102a43',
-                titleFont: { family: 'Sora' },
-                bodyFont: { family: 'Sora' }
-              }
-            }
-          }
-        });
-
-      } catch (e) {
-        table.innerHTML = "<p>Error loading analytics. " + e.message + "</p>";
-      }
-    }
+  }, { capture: true });
   </script>
 </body>
 </html>
