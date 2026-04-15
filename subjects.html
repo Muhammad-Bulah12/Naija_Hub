@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subjects | Naija Students Learning Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    .subjects-hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.2rem;
+      margin-bottom: 1.4rem;
+      align-items: stretch;
+    }
+    .subjects-banner {
+      padding: 1.6rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #ffffff 0%, #eef7ff 45%, #effaf4 100%);
+      border: 1px solid #d7e4f1;
+      box-shadow: 0 16px 34px rgba(16, 42, 67, 0.08);
+    }
+    .subjects-points {
+      display: grid;
+      gap: 0.9rem;
+    }
+    .subjects-point {
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid #d7e4f1;
+      box-shadow: 0 10px 24px rgba(16, 42, 67, 0.06);
+    }
+    .subjects-point strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-family: "Sora", "Trebuchet MS", sans-serif;
+    }
+    .subjects-point span {
+      color: #486581;
+      font-size: 0.92rem;
+    }
+    .link-list .chip {
+      width: 100%;
+      justify-content: center;
+      padding: 0.85rem 1rem;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #f7fbff, #eef8f2);
+      border-color: #d7e4f1;
+      font-weight: 700;
+    }
+    @media (max-width: 860px) {
+      .subjects-hero {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Logo" class="brand-logo">
+        <span>Naija Students Learning Hub</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="#teacherQuizSection">Quizzes</a>
+        <a href="ask.html">Ask Your Teacher</a>
+        <a href="login.php">Teacher Portal</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="subjects-hero">
+        <section class="subjects-banner">
+          <p class="eyebrow">Subjects</p>
+          <h1 style="margin:0 0 0.8rem;">Choose a subject to begin learning</h1>
+          <p style="margin:0;color:#486581;">Browse lessons, open student-friendly explanations, switch to Hausa where needed, and explore teacher-uploaded content in one place.</p>
+        </section>
+        <section class="subjects-points">
+          <article class="subjects-point">
+            <strong>Bilingual Learning</strong>
+            <span>Students can move between English and Hausa support more easily.</span>
+          </article>
+          <article class="subjects-point">
+            <strong>Quick Discovery</strong>
+            <span>Search topics fast before opening a lesson or quiz.</span>
+          </article>
+        </section>
+      </div>
+
+      <div class="page-intro">
+        <p class="eyebrow">Learning Paths</p>
+        <h1>Find lessons faster</h1>
+        <p>Select a topic, read the lesson, switch to Hausa, and practice with quizzes.</p>
+      </div>
+
+      <section class="card discovery-card">
+        <h2>Find a lesson quickly</h2>
+        <label class="field-label" for="lessonSearch">Search by topic or subject</label>
+        <input id="lessonSearch" class="text-input" type="text" placeholder="Search for noun, population, English, Social Studies">
+        <p style="margin:0;color:#486581;font-size:0.92rem;">Students can now open lessons online or download lesson notes and quiz sheets for offline revision.</p>
+      </section>
+
+      <div class="cards-grid two-up">
+        <section class="card subject-card">
+          <h2>English Language</h2>
+          <p>Learn grammar topics in simple English with Hausa translation support.</p>
+          <div class="link-list">
+            <a href="lessons/english-noun.html">Lesson: Noun</a>
+            <button class="chip static-lesson-download" type="button"
+              data-subject="English Studies"
+              data-title="Noun"
+              data-english="A noun is a naming word. It is the name of a person, place, animal, or thing. Examples are teacher, Yobe, goat, and book."
+              data-hausa="Suna kalma ce ta suna. Ita ce sunan mutum, wuri, dabba, ko abu. Misalai su ne malami, Yobe, akuya, da littafi.">
+              Download Noun
+            </button>
+            <a href="lessons/english-verb.html">Lesson: Verb</a>
+            <button class="chip static-lesson-download" type="button"
+              data-subject="English Studies"
+              data-title="Verb"
+              data-english="A verb is an action word. It shows what a person, animal, or thing does. Examples are run, read, jump, and sing."
+              data-hausa="Aiki kalma ce ta aiki. Tana nuna abin da mutum, dabba, ko abu yake yi. Misalai su ne gudu, karantawa, tsalle, da waka.">
+              Download Verb
+            </button>
+            <a href="quiz/english-quiz.html">Take English Quiz</a>
+            <button class="chip quiz-download" type="button" data-quiz-subject="english">Download English Quiz</button>
+          </div>
+        </section>
+
+        <section class="card subject-card">
+          <h2>Social Studies</h2>
+          <p>Study key community and society topics with easy explanations.</p>
+          <div class="link-list">
+            <a href="lessons/social-population.html">Lesson: Population</a>
+            <button class="chip static-lesson-download" type="button"
+              data-subject="Social Studies"
+              data-title="Population"
+              data-english="Population means the number of people living in a place. A village, town, state, or country can have a small or large population."
+              data-hausa="Yawan jama'a yana nufin adadin mutanen da suke zaune a wani wuri. Kauye, gari, jiha, ko kasa na iya samun karamin ko babban yawan jama'a.">
+              Download Population
+            </button>
+            <a href="lessons/social-problems.html">Lesson: Social Problems</a>
+            <button class="chip static-lesson-download" type="button"
+              data-subject="Social Studies"
+              data-title="Social Problems"
+              data-english="Social problems are issues that affect people and communities in a bad way. Examples are poverty, crime, unemployment, and poor sanitation."
+              data-hausa="Matsalolin zamantakewa su ne abubuwan da suke cutar da mutane da al'umma. Misalai su ne talauci, laifi, rashin aikin yi, da rashin tsafta.">
+              Download Social Problems
+            </button>
+            <a href="quiz/social-quiz.html">Take Social Studies Quiz</a>
+            <button class="chip quiz-download" type="button" data-quiz-subject="social">Download Social Studies Quiz</button>
+          </div>
+        </section>
+      </div>
+
+      <section class="section-inline">
+        <div class="section-heading">
+          <p class="eyebrow">Teacher Updates</p>
+          <h2>New lessons added by teachers</h2>
+        </div>
+        <div id="studentLessonFeed" class="cards-grid two-up">
+          <article class="card">
+            <h3>No extra lessons yet</h3>
+            <p>When teachers upload more lessons, students will see them here.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-inline" id="teacherQuizSection">
+        <div class="section-heading">
+          <p class="eyebrow">Teacher Quiz Updates</p>
+          <h2>New quiz questions added by teachers</h2>
+        </div>
+        <div id="studentQuizFeed" class="cards-grid two-up">
+          <article class="card">
+            <h3>No extra quizzes yet</h3>
+            <p>When teachers upload quiz questions, students will see them here.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a class="brand" href="index.html" style="margin-bottom:1.5rem; color:var(--text);">
+            <img src="assets/logo.png" alt="Logo" class="brand-logo">
+            <span>Learning Hub</span>
+          </a>
+          <p>Supporting teachers and students with accessible lessons, quizzes, and guided learning tools in Nigeria.</p>
+          <div class="footer-social">
+            <a href="#" class="social-box"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-instagram-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-x-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-linkedin-logo"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <nav class="footer-nav">
+            <a href="subjects.html">Browse Subjects</a>
+            <a href="ask.html">Ask Your Teacher</a>
+            <a href="login.php">Teacher Portal</a>
+            <a href="index.html">Home Page</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Educational Links</h4>
+          <nav class="footer-nav">
+            <a href="https://education.gov.ng/" target="_blank">Federal Ministry of Education</a>
+            <a href="https://ubec.gov.ng/" target="_blank">UBEC</a>
+            <a href="https://nerdc.gov.ng/" target="_blank">NERDC</a>
+            <a href="https://www.unicef.org/nigeria/education" target="_blank">UNICEF Nigeria</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Contact & Support</h4>
+          <p>Helping learners across underserved communities in Yobe State and Nigeria.</p>
+          <p style="margin-top:1rem;"><strong>Email:</strong> info@naijahub.local</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Naija Students Learning Hub. All rights reserved.</p>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="#" style="color:var(--muted);">Privacy Policy</a>
+          <a href="#" style="color:var(--muted);">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

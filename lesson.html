@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson Viewer | Naija Students Learning Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    .lesson-shell {
+      display: grid;
+      gap: 1.2rem;
+    }
+    .lesson-hero {
+      padding: 1.6rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #ffffff 0%, #eef7ff 45%, #effaf4 100%);
+      border: 1px solid #d7e4f1;
+      box-shadow: 0 16px 34px rgba(16, 42, 67, 0.08);
+    }
+    .lesson-topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .lesson-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.38rem 0.8rem;
+      border-radius: 999px;
+      background: #eef7f3;
+      color: #1a6b3a;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Logo" class="brand-logo">
+        <span>Naija Students Learning Hub</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="subjects.html">Subjects</a>
+        <a href="ask.html">Ask Your Teacher</a>
+        <a href="login.php">Teacher Portal</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container narrow">
+      <div class="lesson-shell">
+      <section class="lesson-hero">
+        <div class="lesson-topbar">
+          <div>
+            <p class="eyebrow">Lesson Viewer</p>
+            <h1 style="margin:0 0 0.55rem;">Read and revise with clarity</h1>
+            <p style="margin:0;color:#486581;">Open the full lesson below, switch to Hausa when needed, and ask the AI assistant for help on the topic.</p>
+          </div>
+          <span class="lesson-tag">Student Ready</span>
+        </div>
+      </section>
+
+      <article class="card lesson-card" id="dynamicLessonCard">
+        <p class="eyebrow" id="dynamicLessonSubject">Teacher Lesson</p>
+        <h1 id="dynamicLessonTitle">Lesson not found</h1>
+        <p class="lesson-text" id="dynamicLessonText">
+          This lesson could not be loaded. Go back to the subjects page and choose another lesson.
+        </p>
+        <div class="button-row">
+          <button class="btn btn-secondary" id="dynamicLessonToggle" type="button">Translate to Hausa</button>
+          <button class="btn btn-outline download-lesson" id="dynamicLessonDownload" type="button">Download Lesson</button>
+          <a class="btn btn-outline" id="dynamicLessonAskLink" href="ask.html">Ask AI about this topic</a>
+        </div>
+      </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a class="brand" href="index.html" style="margin-bottom:1.5rem; color:var(--text);">
+            <img src="assets/logo.png" alt="Logo" class="brand-logo">
+            <span>Learning Hub</span>
+          </a>
+          <p>Supporting teachers and students with accessible lessons, quizzes, and guided learning tools in Nigeria.</p>
+          <div class="footer-social">
+            <a href="#" class="social-box"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-instagram-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-x-logo"></i></a>
+            <a href="#" class="social-box"><i class="ph ph-linkedin-logo"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <nav class="footer-nav">
+            <a href="subjects.html">Browse Subjects</a>
+            <a href="ask.html">Ask Your Teacher</a>
+            <a href="login.php">Teacher Portal</a>
+            <a href="index.html">Home Page</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Educational Links</h4>
+          <nav class="footer-nav">
+            <a href="https://education.gov.ng/" target="_blank">Federal Ministry of Education</a>
+            <a href="https://ubec.gov.ng/" target="_blank">UBEC</a>
+            <a href="https://nerdc.gov.ng/" target="_blank">NERDC</a>
+            <a href="https://www.unicef.org/nigeria/education" target="_blank">UNICEF Nigeria</a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Contact & Support</h4>
+          <p>Helping learners across underserved communities in Yobe State and Nigeria.</p>
+          <p style="margin-top:1rem;"><strong>Email:</strong> info@naijahub.local</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Naija Students Learning Hub. All rights reserved.</p>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="#" style="color:var(--muted);">Privacy Policy</a>
+          <a href="#" style="color:var(--muted);">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
